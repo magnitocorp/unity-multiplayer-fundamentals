@@ -1,2 +1,2 @@
-# unity-multiplayer-fundamentals
+# Unity Multiplayer Fundamentals
 uNet demo
