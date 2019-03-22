@@ -590,7 +590,7 @@ PlayerSettings:
   apiCompatibilityLevel: 2
   cloudProjectId: 8ce7ec23-ae68-4660-8c3e-a31e0a4d65f3
   framebufferDepthMemorylessMode: 0
-  projectName: test
+  projectName: Multiplayer with uNet
   organizationId: magnito-games
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

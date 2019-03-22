@@ -34,6 +34,7 @@ public class MouseManager : MonoBehaviour
         //OnRightClickEnvironment.AddListener(heroController.DoStomp);
         //OnClickAttackable.AddListener(heroController.AttackTarget);
         OnClickEnvironment.AddListener(localPlayerState.HandleSetDestination);
+        OnRightClickEnvironment.AddListener(localPlayerState.HandleDoStomp);
         enabled = true;
     }
 

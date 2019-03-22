@@ -11,6 +11,7 @@ public class PlayerNetworkState : NetworkBehaviour
 
     #region user-defined methods
 
+    #region handles SetDestination
     public void HandleSetDestination(Vector3 destination)
     {
       // GetComponent<HeroController>().SetDestination(destination);
@@ -29,6 +30,28 @@ public class PlayerNetworkState : NetworkBehaviour
        // if (!isLocalPlayer) 
         GetComponent<HeroController>().SetDestination(destination);
     }
+    #endregion
+
+    #region handles DoStomp
+    public void HandleDoStomp(Vector3 destination)
+    {
+        // GetComponent<HeroController>().SetDestination(destination);
+        CmdHandleDoStomp(destination);
+    }
+
+    [Command]
+    public void CmdHandleDoStomp(Vector3 destination)
+    {
+        RpcHandleDoStomp(destination);
+    }
+
+    [ClientRpc]
+    public void RpcHandleDoStomp(Vector3 destination)
+    {
+        // if (!isLocalPlayer) 
+        GetComponent<HeroController>().DoStomp(destination);
+    }
+    #endregion
 
     #endregion
 

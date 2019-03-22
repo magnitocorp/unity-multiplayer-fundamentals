@@ -43,5 +43,10 @@ public class LobbyUIManager : MonoBehaviour
         //GameManager.Instance.StartGame();
     }
 
+    public void StartInternetMatch()
+    {
+        OnlineMatchmaker.Instance.HandleJoinOrCreateMatch();
+    }
+
     #endregion
 }
