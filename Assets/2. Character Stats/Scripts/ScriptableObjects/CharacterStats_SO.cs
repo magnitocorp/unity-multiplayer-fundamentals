@@ -186,12 +186,9 @@ public class CharacterStats_SO : ScriptableObject
 
         if (weapon != null)
         {
-            if (weapon == weaponPickUp)
-            {
-                previousWeaponSame = true;
-            }
+            previousWeaponSame |= weapon == weaponPickUp;
             charInventory.inventoryDisplaySlots[2].sprite = null;
-            DestroyObject(weaponSlot.transform.GetChild(0).gameObject);
+            Destroy(weaponSlot.transform.GetChild(0).gameObject);
             weapon = null;
             currentDamage = baseDamage;
         }
