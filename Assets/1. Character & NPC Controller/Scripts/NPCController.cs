@@ -28,27 +28,27 @@ public class NPCController : MonoBehaviour
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
-        agentSpeed = agent.speed;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        index = Random.Range(0, waypoints.Length);
+        //animator = GetComponent<Animator>();
+        //agent = GetComponent<NavMeshAgent>();
+        //agentSpeed = agent.speed;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
+        //index = Random.Range(0, waypoints.Length);
 
-        MobManager mobManager = FindObjectOfType<MobManager>();
-        if (mobManager != null)
-            OnMobDeath.AddListener(mobManager.OnMobDeath);
+        //MobManager mobManager = FindObjectOfType<MobManager>();
+        //if (mobManager != null)
+        //    OnMobDeath.AddListener(mobManager.OnMobDeath);
 
-        InvokeRepeating("Tick", 0, 0.5f);
+        //InvokeRepeating("Tick", 0, 0.5f);
 
-        if (waypoints.Length > 0)
-        {
-            InvokeRepeating("Patrol", Random.Range(0, patrolTime), patrolTime);
-        }
+        //if (waypoints.Length > 0)
+        //{
+        //    InvokeRepeating("Patrol", Random.Range(0, patrolTime), patrolTime);
+        //}
 
-        timeOfLastAttack = float.MinValue;
-        playerIsAlive = true;
+        //timeOfLastAttack = float.MinValue;
+        //playerIsAlive = true;
 
-        player.gameObject.GetComponent<DestructedEvent>().IDied += PlayerDied;
+        //player.gameObject.GetComponent<DestructedEvent>().IDied += PlayerDied;
     }
 
     private void PlayerDied()
@@ -58,6 +58,7 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
+        return;
         speed = Mathf.Lerp(speed, agent.velocity.magnitude, Time.deltaTime * 10);
         animator.SetFloat("Speed", speed);
 

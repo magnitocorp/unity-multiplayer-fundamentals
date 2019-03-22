@@ -12,6 +12,7 @@ public class CustomNetworkManager : NetworkManager
     #region public properties field
     public const string ConnectionBroadcastMessage = "ConnectionBroadcastMessage";
     public const char BroadcastMessageDelimiter = ' ';
+    public Events.EventLocalPlayerJoined eventLocalPlayerJoined;
     #endregion
 
     #region singleton instance
@@ -49,6 +50,7 @@ public class CustomNetworkManager : NetworkManager
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
         if (!conn.isReady) base.OnClientSceneChanged(conn);
+        if (networkSceneName.Equals("Main")) eventLocalPlayerJoined.Invoke(PlayerNetworkState.LocalPlayer);
         GameManager.Instance.UpdateLevel(networkSceneName);
     }
 

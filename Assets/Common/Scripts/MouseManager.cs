@@ -20,8 +20,21 @@ public class MouseManager : MonoBehaviour
 
     private void Awake()
     {
+        CustomNetworkManager.Instance.eventLocalPlayerJoined.AddListener(HandleLocalPlayerJoined);
         if(GameManager.Instance != null)
             GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
+        enabled = false;
+    }
+
+    public void HandleLocalPlayerJoined(PlayerNetworkState localPlayerState)
+    {
+
+        //HeroController heroController = localPlayerState.GetComponent<HeroController>();
+        //OnClickEnvironment.AddListener(heroController.SetDestination);
+        //OnRightClickEnvironment.AddListener(heroController.DoStomp);
+        //OnClickAttackable.AddListener(heroController.AttackTarget);
+        OnClickEnvironment.AddListener(localPlayerState.HandleSetDestination);
+        enabled = true;
     }
 
     void HandleGameStateChanged(GameManager.GameState currentState, GameManager.GameState previousState)

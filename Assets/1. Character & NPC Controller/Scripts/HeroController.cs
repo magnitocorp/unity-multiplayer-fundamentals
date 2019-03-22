@@ -13,13 +13,16 @@ public class HeroController : MonoBehaviour
     CharacterStats stats;
 
     private GameObject attackTarget;
+    [SerializeField]
+    private GameObject inventoryParent;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<CharacterStats>();
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
+        inventoryParent.transform.SetParent(transform.parent);
     }
 
     private void Start()
