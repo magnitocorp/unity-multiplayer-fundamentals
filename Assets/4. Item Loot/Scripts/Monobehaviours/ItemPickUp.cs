@@ -57,14 +57,25 @@ public class ItemPickUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (itemDefinition.isStorable)
+            PlayerNetworkState playerNetworkState = other.GetComponent<PlayerNetworkState>();
+
+            if (playerNetworkState.isLocalPlayer)
             {
-                StoreItem();
+                StoreOrUseItem();
             }
-            else
-            {
-                UseItem();
-            }
+
+        }
+    }
+
+    void StoreOrUseItem()
+    {
+        if (itemDefinition.isStorable)
+        {
+            StoreItem();
+        }
+        else
+        {
+            UseItem();
         }
     }
 }
