@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrototypeUIManager : MonoBehaviour
+public class LobbyUIManager : MonoBehaviour
 {
-
-
     #region private properties field
-    [SerializeField]
-    private GameObject UIParent;
     private CustomNetworkDiscovery networkDiscovery;
     private CustomNetworkManager networkManager;
     #endregion
@@ -26,22 +22,25 @@ public class PrototypeUIManager : MonoBehaviour
 
     #region user-defined methods
 
-    public void StartHost()
+    public void StartSinglePlayer()
+    {
+        //GameManager.Instance.StartGame();
+        networkManager.StartHost();
+        networkManager.ServerChangeScene("Main");
+    }
+
+    public void StartLANHost()
     {
         networkManager.StartHost();
         networkDiscovery.StartAsServer();
-        DisableButtons();
+        networkManager.ServerChangeScene("Main");
+        //GameManager.Instance.StartGame();
     }
 
-    public void StartClient()
+    public void StartLANClient()
     {
         networkDiscovery.StartAsClient();
-        DisableButtons();
-    }
-
-    void DisableButtons()
-    {
-        UIParent.SetActive(false);
+        //GameManager.Instance.StartGame();
     }
 
     #endregion

@@ -139,6 +139,12 @@ public class GameManager : Manager<GameManager>
         _currentLevelName = levelName;
     }
 
+    public void UpdateLevel(string levelName)
+    {
+        _currentLevelName = levelName;
+        OnLoadOperationComplete(null);
+    }
+
     protected void OnDestroy()
     {
         if (_instancedSystemPrefabs == null)

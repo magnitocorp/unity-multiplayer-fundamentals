@@ -1205,7 +1205,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114263297511283092}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1965905235697882807}
+        m_MethodName: StartLANClient
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1171472268895314
@@ -2025,8 +2036,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: HandleStartClient
+      - m_Target: {fileID: 1965905235697882807}
+        m_MethodName: StartLANHost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2176,6 +2187,7 @@ GameObject:
   - component: {fileID: 114006494436563054}
   - component: {fileID: 114498863683258930}
   - component: {fileID: 114365417396789308}
+  - component: {fileID: 1965905235697882807}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -2331,6 +2343,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Events+EventFadeComplete, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &1965905235697882807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368435504543104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbd4fcc22d4f4780af6c8005c3a6019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1369565319772050
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,7 +4525,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114821982216782158}
+      - m_Target: {fileID: 1965905235697882807}
         m_MethodName: StartSinglePlayer
         m_Mode: 1
         m_Arguments:

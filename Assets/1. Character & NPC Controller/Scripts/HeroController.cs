@@ -19,6 +19,7 @@ public class HeroController : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<CharacterStats>();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
