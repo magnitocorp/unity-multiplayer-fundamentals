@@ -22,7 +22,7 @@ public class HeroController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<CharacterStats>();
         DontDestroyOnLoad(this);
-        inventoryParent.transform.SetParent(transform.parent);
+        //inventoryParent.transform.SetParent(transform.parent);
     }
 
     private void Start()

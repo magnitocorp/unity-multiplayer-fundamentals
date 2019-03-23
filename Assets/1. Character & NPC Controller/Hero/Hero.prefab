@@ -81,6 +81,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  itemPickupCache: {fileID: 0}
+  playerNetworkState: {fileID: 651951446654321676}
 --- !u!1 &1300192550932542
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b1bba02cbbf482a8fcf39f0fd14649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterInventory: {fileID: 114347711189033562}
+  inventoryParent: {fileID: 1065244431162138}
 --- !u!1 &1651103941662380
 GameObject:
   m_ObjectHideFlags: 0

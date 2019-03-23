@@ -15,6 +15,8 @@ public class CharacterInventory : MonoBehaviour
     public Image[] hotBarDisplayHolders = new Image[4];
     public GameObject InventoryDisplayHolder;
     public Image[] inventoryDisplaySlots = new Image[30];
+    public ItemPickupCache itemPickupCache;
+    public PlayerNetworkState playerNetworkState;
 
     int inventoryItemCap = 20;
     int idCount = 1;
@@ -30,11 +32,21 @@ public class CharacterInventory : MonoBehaviour
         instance = this;
         itemEntry = new InventoryEntry(0, null, null);
         itemsInInventory.Clear();
+        itemPickupCache = ItemPickupCache.Instance;
 
         inventoryDisplaySlots = InventoryDisplayHolder.GetComponentsInChildren<Image>();
 
-        foundStats = GameObject.FindGameObjectWithTag("Player");
+        //foundStats = GameObject.FindGameObjectWithTag("Player");
+
+        foundStats = playerNetworkState.gameObject;
         charStats = foundStats.GetComponent<CharacterStats>();
+
+        if (playerNetworkState.isLocalPlayer)
+        {
+            enabled = true;
+        }
+        else
+            enabled = false;
     }
     #endregion
 
@@ -71,9 +83,29 @@ public class CharacterInventory : MonoBehaviour
         }
     }
 
-    public void StoreItem(ItemPickUp itemToStore)
+    //public void StoreItem(ItemPickUp itemToStore)
+    //{
+    //    addedItem = false;
+
+    //    if ((charStats.characterDefinition.currentEncumbrance + itemToStore.itemDefinition.itemWeight) <= charStats.characterDefinition.maxEncumbrance)
+    //    {
+    //        itemEntry.invEntry = itemToStore;
+    //        itemEntry.stackSize = 1;
+    //        itemEntry.hbSprite = itemToStore.itemDefinition.itemIcon;
+
+    //        //addedItem = false;
+    //        itemToStore.gameObject.SetActive(false);
+    //    }
+    //}
+
+    public void StoreItem(string itemName)
     {
         addedItem = false;
+
+        ItemPickUps_SO itemPickUps_SO = itemPickupCache.GetItemByName(itemName);
+        ItemPickUp itemToStore = Instantiate(itemPickUps_SO.itemSpawnObject).GetComponent<ItemPickUp>();
+        itemToStore.charStats = charStats;
+        itemToStore.itemDefinition = itemPickUps_SO;
 
         if ((charStats.characterDefinition.currentEncumbrance + itemToStore.itemDefinition.itemWeight) <= charStats.characterDefinition.maxEncumbrance)
         {

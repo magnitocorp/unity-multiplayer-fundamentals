@@ -10,12 +10,12 @@ public class CharacterStats : MonoBehaviour
     public CharacterInventory charInv;
     public GameObject characterWeaponSlot;
 
-    #region Constructors
-    public CharacterStats()
-    {
-        charInv = CharacterInventory.instance;
-    }
-    #endregion
+    //#region Constructors
+    //public CharacterStats()
+    //{
+    //    charInv = CharacterInventory.instance;
+    //}
+    //#endregion
 
     #region Initializations
     private void Awake()

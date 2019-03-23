@@ -6,9 +6,9 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     public ItemPickUps_SO itemDefinition;
-
     public CharacterStats charStats;
     CharacterInventory charInventory;
+    PlayerNetworkState playerNetworkState;
 
     GameObject foundStats;
 
@@ -25,10 +25,10 @@ public class ItemPickUp : MonoBehaviour
         charStats = foundStats.GetComponent<CharacterStats>();
     }
 
-    void StoreItem()
-    {
-        charInventory.StoreItem(this);
-    }
+    //void StoreItem()
+    //{
+    //    charInventory.StoreItem(this);
+    //}
 
     public void UseItem()
     {
@@ -61,6 +61,7 @@ public class ItemPickUp : MonoBehaviour
 
             if (playerNetworkState.isLocalPlayer)
             {
+                this.playerNetworkState = playerNetworkState;
                 StoreOrUseItem();
             }
 
@@ -71,7 +72,9 @@ public class ItemPickUp : MonoBehaviour
     {
         if (itemDefinition.isStorable)
         {
-            StoreItem();
+            playerNetworkState.CmdStoreItem(itemDefinition.itemName);
+            Destroy(gameObject);
+            //StoreItem();
         }
         else
         {
