@@ -64,15 +64,7 @@ public class PlayerNetworkState : NetworkBehaviour
     }
     #endregion
 
-    #endregion
-
-    #region override methods
-
-    public override void OnStartLocalPlayer()
-    {
-        LocalPlayer = this;
-    }
-
+    #region handles StoreItems
     [Command]
     public void CmdStoreItem(string itemName)
     {
@@ -84,6 +76,69 @@ public class PlayerNetworkState : NetworkBehaviour
     {
         characterInventory.StoreItem(itemName);
     }
+    #endregion
+
+    #region handles ItemUse
+
+    [Command]
+    public void CmdTriggerItemUse(int itemID)
+    {
+        RpcTriggerItemUse(itemID);
+    }
+
+    [ClientRpc]
+    public void RpcTriggerItemUse(int itemID)
+    {
+       characterInventory.TriggerItemUse(itemID);
+    }
+
+    #endregion
+
+    #region handles TryPickUp
+
+    [Command]
+    public void CmdTryPickUp()
+    {
+        RpcTryPickUp();
+    }
+
+    [ClientRpc]
+    public void RpcTryPickUp()
+    {
+        characterInventory.TryPickUp();
+    }
+
+    #endregion
+
+    #region handles UseItemInstant
+
+    [Command]
+    public void CmdUseItemInstant(string itemToUseID)
+    {
+        RpcUseItemInstant(itemToUseID);
+    }
+
+    [ClientRpc]
+    public void RpcUseItemInstant(string itemToUseID)
+    {
+        ItemPickUps_SO itemPickUps_SO = ItemPickupCache.Instance.GetItemByName(itemToUseID);
+        ItemPickUp itemToUse = Instantiate(itemPickUps_SO.itemSpawnObject).GetComponent<ItemPickUp>();
+        itemToUse.charStats = GetComponent<CharacterStats>();
+        itemToUse.itemDefinition = itemPickUps_SO;
+        itemToUse.UseItem();
+    }
+
+    #endregion
+
+    #endregion
+
+    #region override methods
+
+    public override void OnStartLocalPlayer()
+    {
+        LocalPlayer = this;
+    }
+
 
     #endregion
 }

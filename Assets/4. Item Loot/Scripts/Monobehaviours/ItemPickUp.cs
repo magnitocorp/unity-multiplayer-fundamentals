@@ -7,23 +7,23 @@ public class ItemPickUp : MonoBehaviour
 {
     public ItemPickUps_SO itemDefinition;
     public CharacterStats charStats;
-    CharacterInventory charInventory;
+    //CharacterInventory charInventory;
     PlayerNetworkState playerNetworkState;
 
     GameObject foundStats;
 
-    #region Constructors
-    public ItemPickUp()
-    {
-        charInventory = CharacterInventory.instance;
-    }
-    #endregion
+    //#region Constructors
+    //public ItemPickUp()
+    //{
+    //    charInventory = CharacterInventory.instance;
+    //}
+    //#endregion
 
-    void Start()
-    {
-        foundStats = GameObject.FindGameObjectWithTag("Player");
-        charStats = foundStats.GetComponent<CharacterStats>();
-    }
+    //void Start()
+    //{
+    //    foundStats = GameObject.FindGameObjectWithTag("Player");
+    //    charStats = foundStats.GetComponent<CharacterStats>();
+    //}
 
     //void StoreItem()
     //{
@@ -62,6 +62,7 @@ public class ItemPickUp : MonoBehaviour
             if (playerNetworkState.isLocalPlayer)
             {
                 this.playerNetworkState = playerNetworkState;
+                charStats = playerNetworkState.GetComponent<CharacterStats>();
                 StoreOrUseItem();
             }
 
@@ -73,12 +74,14 @@ public class ItemPickUp : MonoBehaviour
         if (itemDefinition.isStorable)
         {
             playerNetworkState.CmdStoreItem(itemDefinition.itemName);
-            Destroy(gameObject);
             //StoreItem();
         }
         else
         {
-            UseItem();
+            playerNetworkState.CmdUseItemInstant(itemDefinition.itemName);
+            //UseItem();
         }
+
+        Destroy(gameObject);
     }
 }

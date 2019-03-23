@@ -56,19 +56,19 @@ public class CharacterInventory : MonoBehaviour
         //Checking for a hotbar key to be pressed
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            TriggerItemUse(101);
+            playerNetworkState.CmdTriggerItemUse(101);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            TriggerItemUse(102);
+            playerNetworkState.CmdTriggerItemUse(102);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            TriggerItemUse(103);
+            playerNetworkState.CmdTriggerItemUse(103);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            TriggerItemUse(104);
+            playerNetworkState.CmdTriggerItemUse(104);
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -79,7 +79,7 @@ public class CharacterInventory : MonoBehaviour
         //Check to see if the item has already been added - Prevent duplicate adds for 1 item
         if (!addedItem)
         {
-            TryPickUp();
+            playerNetworkState.CmdTryPickUp();
         }
     }
 
@@ -118,7 +118,7 @@ public class CharacterInventory : MonoBehaviour
         }
     }
 
-    void TryPickUp()
+    public void TryPickUp()
     {
         bool itsInInv = true;
 
